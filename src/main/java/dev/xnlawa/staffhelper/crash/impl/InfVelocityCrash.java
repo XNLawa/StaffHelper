@@ -5,7 +5,6 @@ import com.github.retrooper.packetevents.util.Vector3d;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerEntityVelocity;
 import dev.xnlawa.staffhelper.crash.Crash;
 import dev.xnlawa.staffhelper.crash.CrashMethod;
-import dev.xnlawa.staffhelper.packet.WrapperPlayServerEntityVelocityCrash;
 import dev.xnlawa.staffhelper.util.RandomUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
