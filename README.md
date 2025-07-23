@@ -25,3 +25,10 @@
 - Minecraft 1.19 – 1.20.4 supported  
   *(Version-specific mappings may be needed)*
 
+## 🤝 Contributing
+
+I warmly welcome pull requests!  
+Whether it's a new crash method, a weird trick, or just a tiny fix — contributions are appreciated.
+
+Open an issue or send a PR anytime.
+
