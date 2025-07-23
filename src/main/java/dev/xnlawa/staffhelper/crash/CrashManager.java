@@ -18,7 +18,6 @@ public class CrashManager {
         addCrash(new FakeDeathCrash());
         addCrash(new BadStateCrash());
         addCrash(new ParticleCrash());
-        addCrash(new BadVelocityPacketCrash());
         addCrash(new PayloadOverflowCrash());
         addCrash(new EntityFloodCrash());
 

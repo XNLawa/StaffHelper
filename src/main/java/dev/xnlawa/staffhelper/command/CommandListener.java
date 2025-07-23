@@ -26,11 +26,11 @@ public class CommandListener implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
                              @NotNull String[] args) {
         if (!sender.hasPermission("staffhelper.use")) {
-            sender.sendMessage(ChatColor.RED + "你没有权限使用这个指令！");
+            pluginMessage(sender, ChatColor.RED + "You don't have permission to use this command!");
             return true;
         }
         if (args.length < 3) {
-            sender.sendMessage(ChatColor.YELLOW + "用法: /staffhelper <tool|trick|crash> <player> <method>");
+            pluginMessage(sender, ChatColor.YELLOW + "Usage: /staffhelper <tool|trick|crash> <player> <method>");
             return true;
         }
 
@@ -40,30 +40,30 @@ public class CommandListener implements CommandExecutor, TabCompleter {
         switch (mode){
             case "crash" -> {
                 if (!sender.hasPermission("staffhelper.crash")) {
-                    sender.sendMessage(ChatColor.RED + "你没有权限使用这个指令！");
+                    pluginMessage(sender, ChatColor.RED + "You don't have permission to use crash methods!");
                     return true;
                 }
             }
             case "trick" -> {
                 if (!sender.hasPermission("staffhelper.trick")) {
-                    sender.sendMessage(ChatColor.RED + "你没有权限使用这个指令！");
+                    pluginMessage(sender, ChatColor.RED + "You don't have permission to use trick methods!");
                     return true;
                 }
             }
             case "tool" -> {
                 if (!sender.hasPermission("staffhelper.tool")) {
-                    sender.sendMessage(ChatColor.RED + "你没有权限使用这个指令！");
+                    pluginMessage(sender, ChatColor.RED + "You don't have permission to use tool methods!");
                     return true;
                 }
             }
             default -> {
-                sender.sendMessage(ChatColor.RED + "无效模式: " + mode + "，应为 trick 或 crash");
+                pluginMessage(sender, ChatColor.RED + "Invalid mode: " + mode + ". Must be 'trick', 'crash' or 'tool'.");
                 return true;
             }
         }
         Player target = Bukkit.getPlayerExact(playerName);
         if (target == null) {
-            sender.sendMessage(ChatColor.RED + "玩家 " + playerName + " 不在线！");
+            pluginMessage(sender, ChatColor.RED + "Player " + playerName + " is not online!");
             return true;
         }
 
@@ -71,7 +71,7 @@ public class CommandListener implements CommandExecutor, TabCompleter {
             case "crash" -> {
                 CrashMethod method = getCrashMethodByName(methodName);
                 if (method == null) {
-                    sender.sendMessage(ChatColor.RED + "无效的 Crash 方法: " + methodName);
+                    pluginMessage(sender, ChatColor.RED + "Invalid crash method: " + methodName);
                     return true;
                 }
                 performCrash(sender, target, method);
@@ -79,7 +79,7 @@ public class CommandListener implements CommandExecutor, TabCompleter {
             case "trick" -> {
                 TrickMethod method = getTrickMethodByName(methodName);
                 if (method == null) {
-                    sender.sendMessage(ChatColor.RED + "无效的 Trick 方法: " + methodName);
+                    pluginMessage(sender, ChatColor.RED + "Invalid trick method: " + methodName);
                     return true;
                 }
                 performTrick(sender, target, method);
@@ -87,29 +87,30 @@ public class CommandListener implements CommandExecutor, TabCompleter {
             case "tool" -> {
                 ToolType type = getToolTypeByName(methodName);
                 if (type == null) {
-                    sender.sendMessage(ChatColor.RED + "无效的 Tool 方法: " + methodName);
+                    pluginMessage(sender, ChatColor.RED + "Invalid tool type: " + methodName);
                     return true;
                 }
                 String[] extraArgs = Arrays.copyOfRange(args, 3, args.length);
                 performTool(sender, target, type, extraArgs);
             }
-            default -> sender.sendMessage(ChatColor.RED + "无效模式: " + mode + "，应为 trick 或 crash");
+            default -> pluginMessage(sender, ChatColor.RED + "Invalid mode: " + mode + ". Must be 'trick', 'crash' or 'tool'.");
         }
 
         return true;
     }
 
     private void performCrash(CommandSender sender, Player target, CrashMethod method) {
-        sender.sendMessage(ChatColor.GREEN + "尝试执行 Crash 方法 " + method.getProperName() + " 对 " + target.getName());
+        pluginMessage(sender, ChatColor.GREEN + "Attempting to execute crash method " + method.getProperName() + " on " + target.getName());
         CrashManager.instance.performCrash(target, method);
     }
 
     private void performTrick(CommandSender sender, Player target, TrickMethod method) {
-        sender.sendMessage(ChatColor.GREEN + "尝试执行 Trick 方法 " + method.getProperName() + " 对 " + target.getName());
+        pluginMessage(sender, ChatColor.GREEN + "Attempting to execute trick method " + method.getProperName() + " on " + target.getName());
         TrickManager.instance.performTrick(target, method);
     }
-    private void performTool(CommandSender sender, Player target, ToolType method,String[] args) {
-        sender.sendMessage(ChatColor.GREEN + "尝试执行 Tool 方法 " + method.getProperName() + " 对 " + target.getName());
+
+    private void performTool(CommandSender sender, Player target, ToolType method, String[] args) {
+        pluginMessage(sender, ChatColor.GREEN + "Attempting to execute tool method " + method.getProperName() + " on " + target.getName());
         ToolManager.instance.performTool(sender, target, method, args);
     }
 
@@ -130,6 +131,7 @@ public class CommandListener implements CommandExecutor, TabCompleter {
         }
         return null;
     }
+
     private ToolType getToolTypeByName(String name) {
         for (ToolType method : ToolType.values()) {
             if (method.name().equalsIgnoreCase(name) || method.getProperName().equalsIgnoreCase(name)) {
@@ -167,5 +169,9 @@ public class CommandListener implements CommandExecutor, TabCompleter {
         }
 
         return completions;
+    }
+
+    public static void pluginMessage(CommandSender sender, String message){
+        sender.sendMessage(ChatColor.GRAY + "[" + ChatColor.GOLD + "StaffHelper" + ChatColor.GRAY + "] " + ChatColor.WHITE + message);
     }
 }

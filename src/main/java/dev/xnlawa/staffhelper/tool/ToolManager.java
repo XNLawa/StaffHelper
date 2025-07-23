@@ -31,7 +31,8 @@ public class ToolManager {
         if (tool != null) {
             boolean result = tool.performTool(target, args);
             if (!result) {
-                sender.sendMessage("§c执行Tool: " + method.name() + "失败，请查看帮助.");
+                sender.sendMessage("§cExecuting Tool: " + method.name() + "failed.");
+                //TODO: Tab Complete args
             }
         }
     }

@@ -7,7 +7,6 @@ public enum CrashMethod {
     EXPLOSION("Explosion"),
     INFPOSITION("InfPosition"),
     INFVELOCITY("InfVelocity"),
-    BADVELOCITYPACKET("BadVelocityPacket"),
     DESTROYPLAYERA("DestroyPlayerA"),
     DESTROYPLAYERB("DestroyPlayerB"),
     FAKEDEATH("FakeDeath"),
