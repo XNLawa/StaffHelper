@@ -1,0 +1,28 @@
+name: StaffHelper
+version: '1.1'
+main: dev.xnlawa.staffhelper.StaffHelper
+api-version: '1.21'
+authors: [ XNLawa ]
+description: A simple plugin to crash players.
+depend:
+  - packetevents
+
+permissions:
+  staffhelper.use:
+    description: 允许使用StaffHelper
+    default: op
+  staffhelper.crash:
+    description: 允许使用StaffHelper崩玩家
+    default: op
+  staffhelper.trick:
+    description: 允许使用StaffHelper捉弄玩家
+    default: op
+  staffhelper.tool:
+    description: 允许使用StaffHelper对玩家使用工具
+    default: op
+commands:
+  staffhelper:
+    description: 主命令
+    usage: /staffhelper <tool|trick|crash> <player> <method>
+    permission: staffhelper.use
+    permission-message: 你没有权限使用这个指令
