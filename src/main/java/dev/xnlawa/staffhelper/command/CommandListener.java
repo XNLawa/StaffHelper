@@ -24,16 +24,18 @@ public class CommandListener implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
-                             @NotNull String[] args) {
+                             @NotNull String @NotNull [] args) {
+        //check the command sender permission
         if (!sender.hasPermission("staffhelper.use")) {
             pluginMessage(sender, ChatColor.RED + "You don't have permission to use this command!");
             return true;
         }
+        //check the command arguments
         if (args.length < 3) {
             pluginMessage(sender, ChatColor.YELLOW + "Usage: /staffhelper <tool|trick|crash> <player> <method>");
             return true;
         }
-
+        //check the mode
         String mode = args[0].toLowerCase();
         String playerName = args[1];
         String methodName = args[2];

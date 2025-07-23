@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public enum TrickMethod {
-//    ZEROSPEED("ZeroSpeed"),
     ILLEGALHEALTHSTATE("IllegalHealthState"),
     DEMOMODE("DemoMode"),
     DEMOMESSAGE("DemoMessage");

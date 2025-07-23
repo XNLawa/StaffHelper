@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 @Getter
 public abstract class Trick {
+    //the trick method
     private final TrickMethod method;
 
     public Trick(TrickMethod method) {

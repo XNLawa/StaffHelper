@@ -21,9 +21,6 @@ public class PacketListener extends PacketListenerAbstract {
         Player player = Bukkit.getPlayer(user.getUUID());
         if (player == null || !player.isOnline()) return;
 
-
+        //may be used for future
     }
-
-
-
 }

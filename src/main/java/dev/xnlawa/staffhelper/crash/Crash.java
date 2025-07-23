@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 
 @Getter
 public abstract class Crash {
+    //the method of the crash
     private final CrashMethod method;
 
     public Crash(CrashMethod method) {

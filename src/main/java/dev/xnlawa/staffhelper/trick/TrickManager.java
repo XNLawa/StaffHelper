@@ -12,7 +12,6 @@ public class TrickManager {
     public static TrickManager instance = new TrickManager();
     public List<Trick> tricks = new ArrayList<>();
     public TrickManager() {
-//        addTrick(new ExplosionCrash());
         addTrick(new DemoModeTrick());
         addTrick(new DemoMessageTrick());
         addTrick(new IllegalHealthStateTrick());
