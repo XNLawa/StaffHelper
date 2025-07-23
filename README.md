@@ -22,8 +22,8 @@
 ## 🧩 Dependencies
 
 - [PacketEvents](https://github.com/retrooper/packetevents) (v2.x or above recommended)
-- Minecraft 1.19 – 1.20.4 supported  
-  *(Version-specific mappings may be needed)*
+- Minecraft 1.19 – 1.21.4 supported  
+  *(Some versions are untested.)*
 
 ## 🤝 Contributing
 
